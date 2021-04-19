@@ -1,6 +1,6 @@
 # killbill-client-java-example
 
-Example project that demonstrates how to use the Kill Bill Java client. For a detailed tutorial, refer to our [docs](https://docs.killbill.io/latest/java_client.html)
+Example project that demonstrates how to use the Kill Bill Java client. For a detailed tutorial, please refer to our [docs](https://docs.killbill.io/latest/java_client.html)
 
 ## Build
 
