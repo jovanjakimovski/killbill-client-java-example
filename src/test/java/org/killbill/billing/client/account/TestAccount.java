@@ -2,12 +2,10 @@ package org.killbill.billing.client.account;
 
 import org.testng.annotations.Test;
 
-import com.google.common.collect.ImmutableMap;
-
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
-import org.killbill.billing.ErrorCode;
 import org.killbill.billing.client.KillBillClientException;
 import org.killbill.billing.client.KillBillHttpClient;
 import org.killbill.billing.client.RequestOptions;
@@ -27,7 +25,6 @@ public class TestAccount {
 		
 		int default_connection_timeout_sec = 10;
 		int default_read_timeout_sec = 60;
-		int default_request_timeout_sec = default_read_timeout_sec;
 		String username = "admin";
 		String password = "password";
 		String apiKey = "bob";
@@ -35,14 +32,14 @@ public class TestAccount {
 		String serverHost = "localhost";
 		int serverPort = 8080;
 		String kbServerUrl = String.format("http://%s:%d", serverHost, serverPort);
-		KillBillHttpClient killBillHttpClient = new KillBillHttpClient(kbServerUrl, username, password, apiKey,apiSecret, null, null, default_connection_timeout_sec * 1000, default_read_timeout_sec * 1000,default_request_timeout_sec * 1000);
+		KillBillHttpClient killBillHttpClient = new KillBillHttpClient(kbServerUrl, username, password, apiKey, apiSecret, null, null, default_connection_timeout_sec * 1000, default_read_timeout_sec * 1000);
 		AccountApi accountApi = new AccountApi(killBillHttpClient);
 		String createdBy = "Kill Bill Client Tutorial";
 		String reason = "Demonstrating Kill Bill Client";
 		String comment = "Demonstrating Kill Bill Client";
 		RequestOptions requestOptions = RequestOptions.builder().withCreatedBy(createdBy).withReason(reason).withComment(comment).build();
-		ImmutableMap<String, String> NULL_PLUGIN_PROPERTIES = null;
-		UUID accountId = UUID.fromString("a21f1ca3-53ec-456b-8039-7170350c9c12"); //accountId whose payment methods are to be fetched, replace with appropriate accountId from your database
+		Map<String, String> NULL_PLUGIN_PROPERTIES = null;
+		UUID accountId = UUID.fromString("1649dff5-d75a-42b8-a50e-049f5aa006b0"); //accountId whose payment methods are to be fetched, replace with appropriate accountId from your database
 		List<PaymentMethod> paymentMethods = accountApi.getPaymentMethodsForAccount(accountId, NULL_PLUGIN_PROPERTIES,requestOptions);
 		logger.info("Payment methods=" + paymentMethods.size());
 		assertEquals(paymentMethods.size(), 2);
